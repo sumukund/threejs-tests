@@ -11,3 +11,11 @@ def hello(name=None):
 @app.route('/main.js')
 def main_js():
     return send_from_directory(os.path.join(app.root_path, 'templates'), 'main.js')
+
+@app.route('/wormhole')
+def wormhole():
+    return render_template('wormhole.html')
+
+@app.route('/wormhole.js')
+def wormhole_js():
+    return send_from_directory(os.path.join(app.root_path, 'templates'), 'wormhole.js')
