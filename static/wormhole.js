@@ -1,9 +1,11 @@
 import * as THREE from "three";
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import spline from "./spline.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import { SimplifyModifier } from 'three/addons/modifiers/SimplifyModifier.js';
 
 const w = window.innerWidth;
 const h = window.innerHeight;
@@ -34,7 +36,7 @@ composer.addPass(bloomPass);
 // create a line geometry from the spline
 const points = spline.getPoints(100);
 const geometry = new THREE.BufferGeometry().setFromPoints(points);
-const material = new THREE.LineBasicMaterial({ color: 0xff0000 });
+const material = new THREE.LineBasicMaterial({ color: 0xccff });
 const line = new THREE.Line(geometry, material);
 // scene.add(line);
 
@@ -43,39 +45,65 @@ const tubeGeo = new THREE.TubeGeometry(spline, 222, 0.65, 16, true);
 
 // create edges geometry from the spline
 const edges = new THREE.EdgesGeometry(tubeGeo, 0.2);
-const lineMat = new THREE.LineBasicMaterial({ color: 0xff0000 });
+const lineMat = new THREE.LineBasicMaterial({ color: 0xccff });
 const tubeLines = new THREE.LineSegments(edges, lineMat);
 scene.add(tubeLines);
 
-const numBoxes = 55;
-const size = 0.075;
-const boxGeo = new THREE.BoxGeometry(size, size, size);
-for (let i = 0; i < numBoxes; i += 1) {
-  const boxMat = new THREE.MeshBasicMaterial({
-    color: 0xffffff,
-    wireframe: true
-  });
-  const box = new THREE.Mesh(boxGeo, boxMat);
-  const p = (i / numBoxes + Math.random() * 0.1) % 1;
-  const pos = tubeGeo.parameters.path.getPointAt(p);
-  pos.x += Math.random() - 0.4;
-  pos.z += Math.random() - 0.4;
-  box.position.copy(pos);
-  const rote = new THREE.Vector3(
-    Math.random() * Math.PI,
-    Math.random() * Math.PI,
-    Math.random() * Math.PI
-  );
-  box.rotation.set(rote.x, rote.y, rote.z);
-  const edges = new THREE.EdgesGeometry(boxGeo, 0.2);
-  const color = new THREE.Color().setHSL(0.7 - p, 1, 0.5);
-  const lineMat = new THREE.LineBasicMaterial({ color });
-  const boxLines = new THREE.LineSegments(edges, lineMat);
-  boxLines.position.copy(pos);
-  boxLines.rotation.set(rote.x, rote.y, rote.z);
-  // scene.add(box);
-  scene.add(boxLines);
-}
+const numBoxes = 10;
+const loader = new GLTFLoader();
+const modifier = new SimplifyModifier();
+
+loader.load(
+  "/static/ALIEN.glb",
+  (glb) => {
+    const alienModel = glb.scene;
+
+    alienModel.traverse((child) => {
+      if (child.isMesh && child.geometry) {
+        const count = Math.floor(child.geometry.attributes.position.count * 0.3); // simplify more if needed
+        child.geometry = modifier.modify(child.geometry, count);
+        child.material.wireframe = false;
+      }
+    });
+
+    const baseWithWire = alienModel.clone(true);
+    baseWithWire.traverse((child) => {
+      if (child.isMesh && child.geometry) {
+        const edges = new THREE.EdgesGeometry(child.geometry);
+        const color = new THREE.Color().setHSL(0.7, 1, 0.5);
+        const lineMat = new THREE.LineBasicMaterial({ color });
+        const wire = new THREE.LineSegments(edges, lineMat);
+        wire.position.copy(child.position);
+        wire.rotation.copy(child.rotation);
+        wire.scale.copy(child.scale);
+        child.add(wire);
+      }
+    });
+
+    for (let i = 0; i < numBoxes; i++) {
+      const alien = baseWithWire.clone(true);
+
+      const p = (i / numBoxes + Math.random() * 0.1) % 1;
+      const pos = tubeGeo.parameters.path.getPointAt(p);
+      pos.x += Math.random() - 0.4;
+      pos.z += Math.random() - 0.4;
+
+      alien.position.copy(pos);
+
+      const rot = new THREE.Vector3(
+        Math.random() * Math.PI,
+        Math.random() * Math.PI,
+        Math.random() * Math.PI
+      );
+      alien.rotation.set(rot.x, rot.y, rot.z);
+      alien.scale.set(0.1, 0.1, 0.1);
+
+      scene.add(alien);
+    }
+  },
+  (xhr) => console.log((xhr.loaded / xhr.total) * 100 + "% loaded"),
+  (error) => console.error("An error happened:", error)
+);
 
 function updateCamera(t) {
   const time = t * 0.1;
