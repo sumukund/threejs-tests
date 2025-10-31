@@ -40,14 +40,29 @@ const material = new THREE.LineBasicMaterial({ color: 0xccff });
 const line = new THREE.Line(geometry, material);
 // scene.add(line);
 
-// create a tube geometry from the spline
-const tubeGeo = new THREE.TubeGeometry(spline, 222, 0.65, 16, true);
-
-// create edges geometry from the spline
+const tubeGeo = new THREE.TubeGeometry(spline, 222, 0.65, 20, true);
 const edges = new THREE.EdgesGeometry(tubeGeo, 0.2);
-const lineMat = new THREE.LineBasicMaterial({ color: 0xccff });
-const tubeLines = new THREE.LineSegments(edges, lineMat);
-scene.add(tubeLines);
+
+const tubeSettings = [
+  { color: 0xff0000, offset: new THREE.Vector3(0.05, 0, 0) }, // Offset for R
+  { color: 0x00ff00, offset: new THREE.Vector3(0, 0, 0) },    // Center for G
+  { color: 0x0000ff, offset: new THREE.Vector3(-0.05, 0, 0) }, // Offset for B
+];
+
+
+tubeSettings.forEach((setting) => {
+  const lineMat = new THREE.LineBasicMaterial({
+    color: setting.color,
+    transparent: true,
+    opacity: 0.8,
+  });
+
+  const tubeLines = new THREE.LineSegments(edges, lineMat);
+
+  tubeLines.position.copy(setting.offset);
+
+  scene.add(tubeLines);
+});
 
 const numBoxes = 10;
 const loader = new GLTFLoader();

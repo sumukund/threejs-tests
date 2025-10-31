@@ -19,3 +19,12 @@ def wormhole():
 @app.route('/wormhole.js')
 def wormhole_js():
     return send_from_directory(os.path.join(app.root_path, 'templates'), 'wormhole.js')
+
+
+@app.route('/interactive')
+def interactive():
+    return render_template('interactive.html')
+
+@app.route('/interactive.js')
+def interactive_js():
+    return send_from_directory(os.path.join(app.root_path, 'templates'), 'interactive.js')

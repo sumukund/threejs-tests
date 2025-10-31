@@ -5,6 +5,8 @@ We will go over steps in lecture. You should fill out the following:
 
 ## What steps do I need to do when I download this repo to get it running?
 
+\. "$HOME/.nvm/nvm.sh"
+. /Users/skmukund/.local/share/virtualenvs/threejs-tests-Tv-umbKz/bin/activate
 
 
 ## What commands starts the server?
