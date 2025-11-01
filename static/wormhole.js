@@ -111,7 +111,7 @@ loader.load(
         Math.random() * Math.PI
       );
       alien.rotation.set(rot.x, rot.y, rot.z);
-      alien.scale.set(0.1, 0.1, 0.1);
+      alien.scale.set(0.3, 0.3, 0.3);
 
       scene.add(alien);
     }
