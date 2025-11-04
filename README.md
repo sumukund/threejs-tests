@@ -8,6 +8,10 @@ Three.js is an open source Javascript library that makes creating and displaying
 
 
 
+You can watch our full tech share video [here](https://drive.google.com/file/d/1TmvwjbrY4xsLZlH753j2LOFPR6Drc4t0/view?usp=drive_link).
+
+
+
 # Render Deployment
 
 
@@ -18,9 +22,39 @@ All of the demo code has been deployed on Render and is accessible via the follo
 
 * [Isocahedron Demo](https://threejs-tests.onrender.com/)
 
+
+
 * [Wormhole Demo](https://threejs-tests.onrender.com/wormhole)
 
+
+
 * [Point Cloud Demo](https://threejs-tests.onrender.com/interactive)
+
+
+
+# Getting Started
+
+
+
+* Clone this repo: `git clone https://github.com/sumukund/threejs-tests.git`
+
+
+
+* Run the code
+
+    * \. "$HOME/.nvm/nvm.sh" . /Users/skmukund/.local/share/virtualenvs/threejs-tests-Tv-umbKz/bin/activate
+
+
+
+    * pipenv install
+
+
+
+    * pipenv shell
+
+
+
+    * flask --app server run --debug OR gunicorn server:app
 
 
 
@@ -30,11 +64,19 @@ All of the demo code has been deployed on Render and is accessible via the follo
 
 * https://threejs.org/
 
+
+
     * https://threejs.org/manual/#en/fundamentals
+
+
 
     * https://threejs.org/manual/#en/creating-a-scene
 
+
+
     * https://threejsresources.com/
+
+
 
 * https://www.youtube.com/watch?v=UMqNHi1GDAE
 
@@ -46,7 +88,11 @@ All of the demo code has been deployed on Render and is accessible via the follo
 
 * https://eyes.nasa.gov/apps/solar-system/#/home
 
+
+
 * https://bruno-simon.com/
+
+
 
 * https://webxr-sneakers.lusion.co/
 
@@ -58,7 +104,7 @@ All of the demo code has been deployed on Render and is accessible via the follo
 
 * Sishir Bommakanti @CadmiumCoffee on Instagram for the GTLF assets.
 
-
+* https://www.youtube.com/watch?v=UMqNHi1GDAE ThreeJS starter tutorial
 
 # Contributions
 
@@ -66,9 +112,15 @@ All of the demo code has been deployed on Render and is accessible via the follo
 
 * Sudarsna Mukund: Created and presented the demo code. 
 
+
+
 * Connor Rivers: Presented the introduction.
 
+
+
 * Melody Washington: Presented the conclusion.
+
+
 
 * Kira Balentine and Giselle Kian: Edited the tech share video together.
 
