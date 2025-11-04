@@ -12,6 +12,8 @@ We will go over steps in lecture. You should fill out the following:
 ## What commands starts the server?
 
 
-## Before render
+## Tech Share Link
 
-Before render you will need to set up a more production-grade backend server process. We will do this together in lecture, once that's done you should update the command above for starting the server to be the **production grade** server.
+https://drive.google.com/file/d/1TmvwjbrY4xsLZlH753j2LOFPR6Drc4t0/view?usp=drive_link.
+
+## webpages 

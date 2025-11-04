@@ -8,17 +8,17 @@
   <style>body { margin: 0; }</style>
 
   <script type="importmap">
-  {
-    "imports": {
-      "three": "/static/three/build/three.module.js",
-      "three/addons/": "/static/three/examples/jsm/"
+    {
+      "imports": {
+        "three": "/static/three/build/three.module.js",
+        "three/addons/": "/static/three/examples/jsm/"
+      }
     }
-  }
-  </script>
+    </script>
 </head>
 
 <body>
   <h1>Wormhole Sample Code</h1>
-  <script type="module" id="wormhole" src="{{ url_for('static', filename='wormhole.js') }}"></script>
+  <script type="module" id="wormhole" src="./wormhole.js"></script>
 </body>
 </html>
