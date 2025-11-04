@@ -1,11 +1,11 @@
 import * as THREE from "three";
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import spline from "../static/spline.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
-import { SimplifyModifier } from 'three/addons/modifiers/SimplifyModifier.js';
+import { SimplifyModifier } from "three/addons/modifiers/SimplifyModifier.js";
 
 const w = window.innerWidth;
 const h = window.innerHeight;
