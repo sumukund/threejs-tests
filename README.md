@@ -1,4 +1,3 @@
-# ThreeJS test
 
 # Three.js Tech Share Demo
 
@@ -106,6 +105,7 @@ All of the demo code has been deployed on Render and is accessible via the follo
 
 * https://www.youtube.com/watch?v=UMqNHi1GDAE ThreeJS starter tutorial
 
+
 # Contributions
 
 
@@ -124,28 +124,3 @@ All of the demo code has been deployed on Render and is accessible via the follo
 
 * Kira Balentine and Giselle Kian: Edited the tech share video together.
 
-
-## Tech Share Link
-
-https://drive.google.com/file/d/1TmvwjbrY4xsLZlH753j2LOFPR6Drc4t0/view?usp=drive_link.
-
-
-
-
-
-### Housekeeping 
-
-## What steps do I need to do when I download this repo to get it running?
-
-* Clone this repo: `git clone https://github.com/sumukund/threejs-tests.git`
-
-
-\. "$HOME/.nvm/nvm.sh"
-. /Users/skmukund/.local/share/virtualenvs/threejs-tests-Tv-umbKz/bin/activate
-
-pipenv install 
-pipenv shell 
-flask --app server run --debug
-
-## What commands starts the server?
-gunicorn server:app
