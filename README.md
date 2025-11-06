@@ -77,9 +77,6 @@ All of the demo code has been deployed on Render and is accessible via the follo
 
 
 
-* https://www.youtube.com/watch?v=UMqNHi1GDAE
-
-
 
 # Real-World Examples Using Three.js
 
